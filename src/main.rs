@@ -14,10 +14,14 @@ type Iv = [u8; 16];
 #[derive(Parser)]
 #[clap(name = "automachef-transfer")]
 #[clap(version = "1.0")]
-#[clap(about = "Decrypt, encrypt and transfer platform and user locked Automachef save files.", long_about = None)]
+#[clap(
+    about = "Decrypt, encrypt and transfer platform and user locked Automachef save files.",
+    long_about = "Automachef by HermesInteractive encrypts it's save files with the user's account ID (Steam, Epic) or a static key (Twitch). The id is then used to name the save directory making it possible to decrypt any Automachef save. Transferring Automachef saves involves first decrypting the directory and then re-encrypting. The newly decrypted/encrypted/transferred save directory will be created alongside the original save directory."
+)]
 #[clap(group(ArgGroup::new("platforms").args(&["epic", "steam", "twitch"])
     ))]
 struct Cli {
+    ///
     #[clap(
         arg_enum,
         requires_if("encrypt", "platforms"),
@@ -25,15 +29,21 @@ struct Cli {
     )]
     action: Action,
 
+    /// e.g. '%APPDATA%/LocalLow/HermesInteractive/Automachef/Saves/<ID>'
     #[clap(parse(from_os_str), value_name = "Save Folder")]
     input: std::path::PathBuf,
 
-    #[clap(long, value_name = "ID")]
+    /// Set Epic as target
+    #[clap(display_order(1), long, value_name = "Epic account ID")]
     epic: Option<String>,
-    #[clap(long, value_name = "ID")]
+    /// Set Steam as target
+    #[clap(display_order(2), long, value_name = "Steam ID (SteamID64)")]
     steam: Option<String>,
-    #[clap(long)]
+    /// Set Twitch as target
+    #[clap(display_order(3), long)]
     twitch: bool,
+
+    /// Overwrite save files in the target directory if it already exists.
     #[clap(long)]
     force_overwrite: bool,
 }
@@ -229,6 +239,11 @@ fn main() -> anyhow::Result<()> {
         key: Some(pbkdf1(&generate_password(source_id))),
         dir: &cli.input.to_owned(),
     };
+
+    if source_id == "Saves" {
+        anyhow::bail!("Error: choose a subdirectory of 'Saves'")
+    }
+
     let target_id = cli.get_id();
     let target = SaveDir {
         key: target_id.as_ref().map(|id| pbkdf1(&generate_password(id))),
