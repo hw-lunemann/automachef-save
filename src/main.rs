@@ -13,7 +13,7 @@ type Iv = [u8; 16];
 
 #[derive(Parser)]
 #[clap(name = "automachef-transfer")]
-#[clap(version = "1.0")]
+#[clap(version = "0.1.0")]
 #[clap(
     about = "Decrypt, encrypt and transfer platform and user locked Automachef save files.",
     long_about = "Automachef by HermesInteractive encrypts it's save files with the user's account ID (Steam, Epic) or a static key (Twitch). The id is then used to name the save directory making it possible to decrypt any Automachef save. Transferring Automachef saves involves first decrypting the directory and then re-encrypting. The newly decrypted/encrypted/transferred save directory will be created alongside the original save directory."
