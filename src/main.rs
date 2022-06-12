@@ -21,18 +21,6 @@ type Iv = [u8; 16];
 #[clap(group(ArgGroup::new("platforms").args(&["epic", "steam", "twitch"])
     ))]
 struct Cli {
-    ///
-    #[clap(
-        arg_enum,
-        requires_if("encrypt", "platforms"),
-        requires_if("transfer", "platforms")
-    )]
-    action: Action,
-
-    /// e.g. '%APPDATA%/LocalLow/HermesInteractive/Automachef/Saves/<ID>'
-    #[clap(parse(from_os_str), value_name = "Save Folder")]
-    input: std::path::PathBuf,
-
     /// Set Epic as target
     #[clap(display_order(1), long, value_name = "Epic account ID")]
     epic: Option<String>,
@@ -46,6 +34,17 @@ struct Cli {
     /// Overwrite save files in the target directory if it already exists.
     #[clap(long)]
     force_overwrite: bool,
+
+    #[clap(
+        arg_enum,
+        requires_if("encrypt", "platforms"),
+        requires_if("transfer", "platforms")
+    )]
+    action: Action,
+
+    /// e.g. '%APPDATA%/LocalLow/HermesInteractive/Automachef/Saves/<ID>'
+    #[clap(parse(from_os_str), value_name = "Save Folder")]
+    input: std::path::PathBuf,
 }
 
 impl Cli {
