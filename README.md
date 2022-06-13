@@ -39,5 +39,7 @@ OPTIONS:
 
 # Example
 ```
+// transfer a save to the steam user with SteamID64 38217381973127
+// the new save folder will be called ./test_data/38217381973127
 automachef-save transfer ./test_data/1234567890 --steam 38217381973127 
 ```
