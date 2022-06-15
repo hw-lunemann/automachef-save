@@ -19,16 +19,19 @@ type Iv = [u8; 16];
     long_about = "Automachef by HermesInteractive encrypts it's save files with the user's account ID (Steam, Epic) or a static key (Twitch). The ID is then used to name the save directory making it possible to decrypt any regular Automachef save without supplying the ID. Transferring Automachef saves involves first decrypting the directory and then re-encrypting. The newly decrypted/encrypted/transferred save directory will be created alongside the original save directory."
 )]
 enum Action {
+    #[clap(display_order(1))]
     Decrypt {
         #[clap(flatten)]
         opts: CliOptions,
     },
+    #[clap(display_order(2))]
     Encrypt { 
         #[clap(flatten)]
         platform: Platform,
         #[clap(flatten)]
         opts: CliOptions
     },
+    #[clap(display_order(3))]
     Transfer { 
         #[clap(flatten)]
         platform: Platform,
