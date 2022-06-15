@@ -23,9 +23,10 @@ SUBCOMMANDS:
             
     encrypt
             
+    transfer
+            
     help
             Print this message or the help of the given subcommand(s)
-    transfer
 ```
 ## automachef-save-decrypt 
 ```
