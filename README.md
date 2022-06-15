@@ -43,7 +43,7 @@ OPTIONS:
 ## automachef-save-encrypt 
 ```
 USAGE:
-    automachef-save encrypt [OPTIONS] <Save Folder>
+    automachef-save encrypt [OPTIONS] <--epic <ID>|--steam <ID>|--twitch> <Save Folder>
 
 ARGS:
     <Save Folder>    e.g. '%APPDATA%/LocalLow/HermesInteractive/Automachef/Saves/<ID>'
@@ -58,7 +58,7 @@ OPTIONS:
 ## automachef-save-transfer 
 ```
 USAGE:
-    automachef-save transfer [OPTIONS] <Save Folder>
+    automachef-save transfer [OPTIONS] <--epic <ID>|--steam <ID>|--twitch> <Save Folder>
 
 ARGS:
     <Save Folder>    e.g. '%APPDATA%/LocalLow/HermesInteractive/Automachef/Saves/<ID>'

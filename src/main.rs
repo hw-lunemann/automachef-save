@@ -1,5 +1,5 @@
 use anyhow::Context;
-use clap::{Parser, Args};
+use clap::{Parser, Args, ArgGroup};
 use walkdir::WalkDir;
 
 use aes::cipher::{BlockDecryptMut, BlockEncryptMut, KeyIvInit};
@@ -60,6 +60,7 @@ struct CliOptions {
 }
 
 #[derive(Args)] 
+#[clap(group(ArgGroup::new("platform").args(&["epic", "steam", "twitch"]).required(true).multiple(false)))]
 struct Platform {
     /// Epic account ID
     #[clap(value_parser, long, value_name = "ID", display_order(0))]
