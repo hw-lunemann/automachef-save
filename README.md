@@ -38,8 +38,9 @@ ARGS:
 OPTIONS:
         --force-overwrite    Overwrite save files in the target directory if it already exists
     -h, --help               Print help information
-
+```
 ## automachef-save-encrypt 
+```
 USAGE:
     automachef-save encrypt [OPTIONS] <Save Folder>
 
