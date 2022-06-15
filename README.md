@@ -7,6 +7,7 @@ decrypting the directory and then re-encrypting. The newly decrypted/encrypted/t
 directory will be created alongside the original save directory.
 
 # Usage
+```
 USAGE:
     automachef-save <SUBCOMMAND>
 
@@ -25,8 +26,9 @@ SUBCOMMANDS:
     help
             Print this message or the help of the given subcommand(s)
     transfer
-
+```
 ## automachef-save-decrypt 
+```
 USAGE:
     automachef-save decrypt [OPTIONS] <Save Folder>
 
@@ -50,9 +52,9 @@ OPTIONS:
         --twitch             Twitch
         --force-overwrite    Overwrite save files in the target directory if it already exists
     -h, --help               Print help information
-
+```
 ## automachef-save-transfer 
-
+```
 USAGE:
     automachef-save transfer [OPTIONS] <Save Folder>
 
@@ -65,7 +67,7 @@ OPTIONS:
         --twitch             Twitch
         --force-overwrite    Overwrite save files in the target directory if it already exists
     -h, --help               Print help information
-
+```
 # Example
 ```
 // produces ./test_data/1234567890.decrypted
