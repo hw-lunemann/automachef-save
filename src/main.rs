@@ -12,7 +12,7 @@ type Key = [u8; 32];
 type Iv = [u8; 16];
 
 #[derive(Parser)]
-#[clap(name = "automachef-transfer")]
+#[clap(name = "automachef-save")]
 #[clap(version = "0.2.0")]
 #[clap(
     about = "Decrypt, encrypt and transfer platform and user locked Automachef save files.",
