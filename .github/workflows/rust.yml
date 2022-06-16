@@ -16,7 +16,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      run: cargo build --verbose
+      run: cargo build --release --verbose
+    - name: strip
+      run: strip target/release/automachef-save
+    - name: Upload Binary as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: automachef-save-linux-amd64
+        path: target/release/automachef-save
   
   build-windows:
     runs-on: windows-latest
@@ -24,4 +31,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      run: cargo build --verbose
+      run: cargo build --release --verbose
+    - name: strip
+      run: strip target/release/automachef-save.exe
+    - name: Upload Binary as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: automachef-save-windows-amd64
+        path: target/release/automachef-save.exe
