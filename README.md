@@ -1,5 +1,4 @@
 # automachef-save
-automachef-transfer 0.2.0
 Automachef by HermesInteractive encrypts it's save files with the user's account ID (Steam, Epic) or
 a static key (GOG, Twitch). The ID is then used to name the save directory making it possible to decrypt
 any regular Automachef save without supplying the ID. Transferring Automachef saves involves first
