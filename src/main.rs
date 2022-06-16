@@ -16,7 +16,7 @@ type Iv = [u8; 16];
 #[clap(version = "0.2.0")]
 #[clap(
     about = "Decrypt, encrypt and transfer platform and user locked Automachef save files.",
-    long_about = "Automachef by HermesInteractive encrypts it's save files with the user's account ID (Steam, Epic) or a static key (Twitch). The ID is then used to name the save directory making it possible to decrypt any regular Automachef save without supplying the ID. Transferring Automachef saves involves first decrypting the directory and then re-encrypting. The newly decrypted/encrypted/transferred save directory will be created alongside the original save directory."
+    long_about = "Automachef by HermesInteractive encrypts it's save files with the user's account ID (Steam, Epic) or a static key (Twitch, GOG). The ID is then used to name the save directory making it possible to decrypt any regular Automachef save without supplying the ID. Transferring Automachef saves involves first decrypting the directory and then re-encrypting. The newly decrypted/encrypted/transferred save directory will be created alongside the original save directory."
 )]
 enum Action {
     #[clap(display_order(1))]
@@ -60,7 +60,7 @@ struct CliOptions {
 }
 
 #[derive(Args)] 
-#[clap(group(ArgGroup::new("platform").args(&["epic", "steam", "twitch"]).required(true).multiple(false)))]
+#[clap(group(ArgGroup::new("platform").args(&["epic", "steam", "gog", "twitch"]).required(true).multiple(false)))]
 struct Platform {
     /// Epic account ID
     #[clap(value_parser, long, value_name = "ID", display_order(0))]
@@ -68,13 +68,17 @@ struct Platform {
     /// Steam accunt ID (SteamID64)
     #[clap(value_parser, long, value_name = "ID", display_order(1))]
     steam: Option<String>,
-    /// Twitch
+    /// GOG
     #[clap(value_parser, long, display_order(2))]
+    gog: bool,
+    /// Twitch
+    #[clap(value_parser, long, display_order(3))]
     twitch: bool
 }
 
 impl Platform {
     fn get_target_id(&self) -> &str {
+        // GOG and Twitch use the same static ID
         self.epic.as_deref().unwrap_or_else(|| self.steam.as_deref().unwrap_or("YWprc2g1NGZkaGo0MzJoMjM0amg="))
     }
 }

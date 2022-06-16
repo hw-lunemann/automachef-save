@@ -1,7 +1,7 @@
 # automachef-save
 automachef-transfer 0.2.0
 Automachef by HermesInteractive encrypts it's save files with the user's account ID (Steam, Epic) or
-a static key (Twitch). The ID is then used to name the save directory making it possible to decrypt
+a static key (GOG, Twitch). The ID is then used to name the save directory making it possible to decrypt
 any regular Automachef save without supplying the ID. Transferring Automachef saves involves first
 decrypting the directory and then re-encrypting. The newly decrypted/encrypted/transferred save
 directory will be created alongside the original save directory.
@@ -43,7 +43,7 @@ OPTIONS:
 ## automachef-save-encrypt 
 ```
 USAGE:
-    automachef-save encrypt [OPTIONS] <--epic <ID>|--steam <ID>|--twitch> <Save Folder>
+    automachef-save encrypt [OPTIONS] <--epic <ID>|--steam <ID>|--gog|--twitch> <Save Folder>
 
 ARGS:
     <Save Folder>    e.g. '%APPDATA%/LocalLow/HermesInteractive/Automachef/Saves/<ID>'
@@ -51,6 +51,7 @@ ARGS:
 OPTIONS:
         --epic <ID>          Epic account ID
         --steam <ID>         Steam accunt ID (SteamID64)
+        --gog                GOG
         --twitch             Twitch
         --force-overwrite    Overwrite save files in the target directory if it already exists
     -h, --help               Print help information
@@ -58,7 +59,7 @@ OPTIONS:
 ## automachef-save-transfer 
 ```
 USAGE:
-    automachef-save transfer [OPTIONS] <--epic <ID>|--steam <ID>|--twitch> <Save Folder>
+    automachef-save transfer [OPTIONS] <--epic <ID>|--steam <ID>|--gog|--twitch> <Save Folder>
 
 ARGS:
     <Save Folder>    e.g. '%APPDATA%/LocalLow/HermesInteractive/Automachef/Saves/<ID>'
@@ -66,6 +67,7 @@ ARGS:
 OPTIONS:
         --epic <ID>          Epic account ID
         --steam <ID>         Steam accunt ID (SteamID64)
+        --gog                GOG
         --twitch             Twitch
         --force-overwrite    Overwrite save files in the target directory if it already exists
     -h, --help               Print help information
